@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOLMAR — Streets of the Sun</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<div id="hud" style="display:none">
+  <div id="hud-top">
+    <div id="health"><div id="health-fill"></div><span id="health-text">100</span></div>
+    <div id="cash">$200</div>
+    <div id="stars">☆☆☆☆☆</div>
+    <div id="zone">DOWNTOWN</div>
+  </div>
+  <div id="objective"><div id="objective-title">FREE ROAM</div><div id="objective-text"></div></div>
+  <canvas id="minimap" width="150" height="150"></canvas>
+  <div id="speedometer"><span id="speed">0 km/h</span><span id="car-health"></span></div>
+  <div id="hint"></div>
+  <div id="banner"><div id="banner-title"></div><div id="banner-sub"></div></div>
+</div>
+
+<div id="title-screen" class="overlay">
+  <h1>SOLMAR</h1>
+  <h2>Streets of the Sun</h2>
+  <p class="tag">An original open-world crime game set in Solmar Bay. Danny "Dice" Marlow is back — Vera Santos has work, and the Harbor Kings want him gone.</p>
+  <button id="newgame-btn">NEW GAME</button>
+  <button id="continue-btn" style="display:none">CONTINUE</button>
+  <button id="howto-btn">HOW TO PLAY</button>
+  <div id="howto" style="display:none">
+    <p>WASD move / drive &nbsp;•&nbsp; SHIFT sprint &nbsp;•&nbsp; Mouse aim, click shoot &nbsp;•&nbsp; E steal / exit car &nbsp;•&nbsp; SPACE handbrake &nbsp;•&nbsp; F heal at hospital / respray at auto spa &nbsp;•&nbsp; ESC pause</p>
+    <p>Steal cars, dodge the SBPD, do Vera's jobs, and don't get wasted or busted.</p>
+  </div>
+  <p class="foot">100% original — no Rockstar/GTA content. Runs offline.</p>
+</div>
+
+<div id="pause-screen" class="overlay" style="display:none">
+  <h1>PAUSED</h1>
+  <p id="pause-stats"></p>
+  <button id="resume-btn">RESUME</button>
+  <button id="save-btn">SAVE GAME</button>
+  <button id="restart-mission-btn">RESTART MISSION</button>
+  <button id="quit-btn">QUIT TO TITLE</button>
+</div>
+
+<div id="wasted-screen" class="overlay" style="display:none">
+  <h1 class="red">WASTED</h1>
+  <p>Danny got patched up at Solmar General. Hospital bill: $100.</p>
+  <button id="respawn-btn">RESPAWN — $100</button>
+</div>
+
+<div id="busted-screen" class="overlay" style="display:none">
+  <h1 class="red">BUSTED</h1>
+  <p>The SBPD caught up with Danny. Bail: $150.</p>
+  <button id="bail-btn">PAY BAIL — $150</button>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
