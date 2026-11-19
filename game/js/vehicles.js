@@ -14,7 +14,7 @@ export const MODELS = {
 export function createCar(x, y, angle, model, role) {
   const m = MODELS[model] || MODELS.sedan;
   return {
-    x, y, angle, model, role: role || 'traffic',
+    x, y, angle, model, role: role || 'traffic', color: null, // B2: color override (gold sports car); null = model default
     vx: 0, vy: 0, health: 100, wrecked: false, handbrake: false,
     speed: 0, cruise: 150 + Math.random() * 90, axis: 'x', dir: 1,
     noTurn: false, stuckT: 0, dead: false,
@@ -185,7 +185,7 @@ export function drawCar(ctx, car) {
   ctx.rotate(car.angle);
   ctx.fillStyle = 'rgba(0,0,0,0.3)';
   ctx.fillRect(-m.len / 2 + 3, -m.wid / 2 + 4, m.len, m.wid);
-  ctx.fillStyle = car.wrecked ? '#2b2b2b' : m.color;
+  ctx.fillStyle = car.wrecked ? '#2b2b2b' : (car.color || m.color);
   ctx.fillRect(-m.len / 2, -m.wid / 2, m.len, m.wid);
   // cabin + windshield
   ctx.fillStyle = car.wrecked ? '#1a1a1a' : '#222831';

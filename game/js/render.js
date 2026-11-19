@@ -135,6 +135,16 @@ export function drawWorld(game, ctx, cam, vw, vh) {
     ctx.lineTo(game.missionMarker.x + 8, game.missionMarker.y + bob - 12);
     ctx.closePath(); ctx.fill();
   }
+  // hidden cash stash glints (B2): faint green pulsing dots for untaken stashes
+  const stashes = game.missions?.stashes?.() || [];
+  for (const s of stashes) {
+    if (s.taken || !inView(s.x, s.y)) continue;
+    const pulse = 0.5 + 0.4 * Math.sin(performance.now() / 400);
+    ctx.fillStyle = `rgba(46,204,113,${pulse})`;
+    ctx.beginPath(); ctx.arc(s.x, s.y, 7, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.8)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(s.x, s.y, 11, 0, Math.PI * 2); ctx.stroke();
+  }
   // skids / effects under cars
   for (const car of game.cars) if (inView(car.x, car.y)) drawCar(ctx, car);
   for (const ped of game.peds) if (inView(ped.x, ped.y)) drawPed(ctx, ped);

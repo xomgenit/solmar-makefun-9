@@ -82,6 +82,7 @@ function resetGame(seed, saveData) {
   if (saveData && saveData.car) {
     const c = createCar(saveData.car.x, saveData.car.y, saveData.car.angle, saveData.car.model, 'player');
     c.health = saveData.car.health;
+    if (saveData.car.color) c.color = saveData.car.color; // B2: keep the gold sports car gold on CONTINUE
     game.cars.push(c);
     game.player.car = c;
   }
@@ -96,6 +97,9 @@ game.saveNow = () => { saveGame(game); return true; };
 function startNewGame() {
   const seed = seedParam ? parseInt(seedParam, 10) || 7 : Math.floor(Math.random() * 100000);
   resetGame(seed, null);
+  // B2: NEW GAME starts Vera's job chain (mission 1), $200 start (set in resetGame).
+  game.missions.reset();
+  game.missions.start('first-wheels');
   game.state = 'playing';
   showScreen(null);
   hud.showHud(true);
